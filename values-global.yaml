@@ -1,6 +1,6 @@
 ---
 global:
-  pattern: multicloud-gitops
+  pattern: multicloud-gitops-sgx-hello-world
   options:
     useCSV: false
     syncPolicy: Automatic
