@@ -1,0 +1,4 @@
+---
+image:
+  repository: quay.io/hybridcloudpatterns/hello-world-sgx
+  tag: 3.12

@@ -7,16 +7,33 @@ clusterGroup:
     - golang-external-secrets
     - config-demo
     - hello-world
+    - openshift-nfd
+    - hello-world-sgx
+    - openshift-operators:
+        operatorGroup: false
   subscriptions:
     acm:
       name: advanced-cluster-management
       namespace: open-cluster-management
       channel: release-2.10
       #csv: advanced-cluster-management.v2.6.1
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      channel: stable
+      source: redhat-operators
+    intel-device-plugins:
+      name: intel-device-plugins-operator
+      namespace: openshift-operators
+      channel: alpha
+      source: certified-operators
   projects:
     - hub
     - config-demo
     - hello-world
+    - openshift-nfd
+    - openshift-operators
+    - hello-world-sgx
   # Explicitly mention the cluster-state based overrides we plan to use for this pattern.
   # We can use self-referential variables because the chart calls the tpl function with these variables defined
   sharedValueFiles:
@@ -68,6 +85,21 @@ clusterGroup:
       namespace: hello-world
       project: hello-world
       path: charts/all/hello-world
+    nfd:
+      name: nfd
+      namespace: openshift-nfd
+      project: openshift-nfd
+      path: charts/all/nfd
+    intel-device-plugins:
+      name: intel-device-plugins
+      namespace: openshift-operators
+      project: openshift-operators
+      path: charts/all/intel-device-plugins
+    hello-world-sgx:
+      name: hello-world-sgx
+      namespace: hello-world-sgx
+      project: hello-world-sgx
+      path: charts/all/hello-world-sgx
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
     # The default schedule is every 10 minutes: imperative.schedule
